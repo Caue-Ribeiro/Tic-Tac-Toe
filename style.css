@@ -1,0 +1,206 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --square-size: 100px;
+    --mark-size: calc(var(--square-size) * 0.9);
+}
+
+body {
+    background-color: black;
+    font-family: fantasy;
+}
+
+h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1%;
+    color: white;
+    font-size: 3em;
+    font-family: 'Comic Neue', cursive;
+    font-weight: 300px;
+    animation: animate 3s linear infinite;
+}
+.board {
+    width: 100vw;
+    height: 400px;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3, auto);
+}
+
+.square {
+    width: var(--square-size);
+    height: var(--square-size);
+    border: 1px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.square.x,
+.square.circle {
+    cursor: not-allowed;
+}
+
+.square:first-child,
+.square:nth-child(2),
+.square:nth-child(3) {
+    border-top: none;
+}
+
+.square:first-child,
+.square:nth-child(4),
+.square:nth-child(7) {
+    border-left: none;
+}
+
+.square:nth-child(3),
+.square:nth-child(6),
+.square:last-child {
+    border-right: none;
+}
+.square:last-child,
+.square:nth-child(7),
+.square:nth-child(8) {
+    border-bottom: none;
+}
+
+.square.x::before,
+.square.x::after {
+    background-color: white;
+    box-shadow: 0 0 10px rgba(252, 176, 69, 1), 0 0 20px rgba(252, 176, 69, 1),
+        0 0 40px rgba(252, 176, 69, 1), 0 0 80px rgba(252, 176, 69, 1),
+        0 0 160px rgba(252, 176, 69, 1);
+}
+
+.square.circle::before,
+.square.circle::after {
+    background-color: #93e6ff;
+    box-shadow: 0 0 10px #03bcf4, 0 0 20px #03bcf4, 0 0 40px #03bcf4,
+        0 0 80px #03bcf4, 0 0 160px #03bcf4;
+}
+
+.board.x .square:not(.x):not(.circle):hover::before,
+.board.x .square:not(.x):not(.circle):hover::after,
+.board.circle .square:not(.x):not(.circle):hover::before {
+    background-color: rgba(102, 102, 102, 0.281);
+}
+
+.square.x::before,
+.square.x::after,
+.board.x .square:not(.x):not(.circle):hover::before,
+.board.x .square:not(.x):not(.circle):hover::after {
+    content: '';
+    width: calc(var(--mark-size) * 0.15);
+    height: var(--mark-size);
+    position: absolute;
+    border-radius: 10px;
+}
+
+.square.x::before,
+.board.x .square:not(.x):not(.circle):hover::before {
+    transform: rotate(45deg);
+}
+
+.square.x::after,
+.board.x .square:not(.x):not(.circle):hover::after {
+    transform: rotate(-45deg);
+}
+
+.square.circle::before,
+.square.circle::after,
+.board.circle .square:not(.x):not(.circle):hover::before,
+.board.circle .square:not(.x):not(.circle):hover::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+}
+
+.square.circle::before,
+.board.circle .square:not(.x):not(.circle):hover::before {
+    width: var(--mark-size);
+    height: var(--mark-size);
+}
+
+.square.circle::after,
+.board.circle .square:not(.x):not(.circle):hover::after {
+    background-color: #93e6ff;
+    box-shadow: 0 0 10px #03bcf4, 0 0 20px #03bcf4, 0 0 40px #03bcf4,
+        0 0 80px #03bcf4;
+}
+
+.winning-message {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    font-size: 4rem;
+    letter-spacing: 5px;
+    text-shadow: 0 0 10px #03bcf4, 0 0 20px #03bcf4, 0 0 40px #03bcf4,
+        0 0 80px #03bcf4, 0 0 180px #03bcf4;
+}
+
+.winning-message button {
+    appearance: none;
+    border: none;
+    padding: 10px;
+    font-size: 2rem;
+    background-color: white;
+    border-radius: 10px;
+    font-family: fantasy;
+    transition: all ease 0.3s;
+}
+.winning-message button:hover {
+    color: white;
+    background-color: black;
+}
+
+.winning-message.show {
+    display: flex;
+}
+
+@keyframes animate {
+    18.1%,
+    20%,
+    30%,
+    50%,
+    60%,
+    65%,
+    80%,
+    90%,
+    92% {
+        color: rgb(126, 126, 126);
+        text-shadow: none;
+    }
+
+    18.1%,
+    20%,
+    30%,
+    50%,
+    60%,
+    65%,
+    80%,
+    90%,
+    95%,
+    100% {
+        color: white;
+        text-shadow: 0 0 10px #f40303, 0 0 20px #f40303, 0 0 40px #f40303,
+            0 0 80px #f40303, 0 0 160px #f40303;
+    }
+}
