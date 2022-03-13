@@ -4,6 +4,6 @@
 
 ## Play it now!
 
-# Project link: https://caue-ribeiro.github.io/Tic-Tac-Toe/
+### Project link: https://caue-ribeiro.github.io/Tic-Tac-Toe/
 
 <img src="./image/Screenshot_1.png" width="700">
